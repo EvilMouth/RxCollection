@@ -14,13 +14,11 @@ class MainActivity : AppCompatActivity() {
 
         ObservableCollection.zip(
                 Observable.just("1"),
-                Observable.just("2"),
-                Observable.just("3")
+                Observable.just("2F")
         )
-                .subscribeUnpack { s1, s2, s3 ->
+                .subscribeUnpack { s1, s2 ->
                     System.out.println(s1)
                     System.out.println(s2)
-                    System.out.println(s3)
                 }
     }
 }

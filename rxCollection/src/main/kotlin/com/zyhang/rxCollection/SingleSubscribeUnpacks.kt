@@ -12,12 +12,12 @@ import io.reactivex.disposables.Disposable
  * Modify remark:
  */
 
-fun <T1 : Any, T2 : Any> Single<BiCollection<T1, T2>>.subscribeUnpack(onError: (Throwable) -> Unit = onErrorStub,
-                                                                      onSuccess: (T1, T2) -> Unit)
+fun <T1 : Any, T2 : Any> Single<Pair<T1, T2>>.subscribeUnpack(onError: (Throwable) -> Unit = onErrorStub,
+                                                              onSuccess: (T1, T2) -> Unit)
         : Disposable = subscribe({ it.unpack(onSuccess) }, onError)
 
-fun <T1 : Any, T2 : Any, T3 : Any> Single<Collection3<T1, T2, T3>>.subscribeUnpack(onError: (Throwable) -> Unit = onErrorStub,
-                                                                                   onSuccess: (T1, T2, T3) -> Unit)
+fun <T1 : Any, T2 : Any, T3 : Any> Single<Triple<T1, T2, T3>>.subscribeUnpack(onError: (Throwable) -> Unit = onErrorStub,
+                                                                              onSuccess: (T1, T2, T3) -> Unit)
         : Disposable = subscribe({ it.unpack(onSuccess) }, onError)
 
 fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any> Single<Collection4<T1, T2, T3, T4>>.subscribeUnpack(onError: (Throwable) -> Unit = onErrorStub,

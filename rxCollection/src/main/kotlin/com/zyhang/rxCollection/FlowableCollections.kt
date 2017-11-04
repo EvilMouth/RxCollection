@@ -1,8 +1,8 @@
 package com.zyhang.rxCollection
 
 import io.reactivex.Flowable
-import org.reactivestreams.Publisher
 import io.reactivex.functions.*
+import org.reactivestreams.Publisher
 
 /**
  * ProjectName:RxCollection
@@ -16,15 +16,15 @@ import io.reactivex.functions.*
 object FlowableCollection {
 
     fun <T1, T2> combineLatest(source1: Publisher<out T1>,
-                               source2: Publisher<out T2>): Flowable<BiCollection<T1, T2>> =
+                               source2: Publisher<out T2>): Flowable<Pair<T1, T2>> =
             Flowable.combineLatest(source1, source2,
-                    BiFunction { t1, t2 -> BiCollection(t1, t2) })
+                    BiFunction { t1, t2 -> t1 to t2 })
 
     fun <T1, T2, T3> combineLatest(source1: Publisher<out T1>,
                                    source2: Publisher<out T2>,
-                                   source3: Publisher<out T3>): Flowable<Collection3<T1, T2, T3>> =
+                                   source3: Publisher<out T3>): Flowable<Triple<T1, T2, T3>> =
             Flowable.combineLatest(source1, source2, source3,
-                    Function3 { t1, t2, t3 -> Collection3(t1, t2, t3) })
+                    Function3 { t1, t2, t3 -> Triple(t1, t2, t3) })
 
     fun <T1, T2, T3, T4> combineLatest(source1: Publisher<out T1>,
                                        source2: Publisher<out T2>,
@@ -86,15 +86,15 @@ object FlowableCollection {
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
     fun <T1, T2> zip(source1: Publisher<out T1>,
-                     source2: Publisher<out T2>): Flowable<BiCollection<T1, T2>> =
+                     source2: Publisher<out T2>): Flowable<Pair<T1, T2>> =
             Flowable.zip(source1, source2,
-                    BiFunction { t1, t2 -> BiCollection(t1, t2) })
+                    BiFunction { t1, t2 -> t1 to t2 })
 
     fun <T1, T2, T3> zip(source1: Publisher<out T1>,
                          source2: Publisher<out T2>,
-                         source3: Publisher<out T3>): Flowable<Collection3<T1, T2, T3>> =
+                         source3: Publisher<out T3>): Flowable<Triple<T1, T2, T3>> =
             Flowable.zip(source1, source2, source3,
-                    Function3 { t1, t2, t3 -> Collection3(t1, t2, t3) })
+                    Function3 { t1, t2, t3 -> Triple(t1, t2, t3) })
 
     fun <T1, T2, T3, T4> zip(source1: Publisher<out T1>,
                              source2: Publisher<out T2>,
@@ -154,12 +154,12 @@ object FlowableCollection {
                     Function9 { t1, t2, t3, t4, t5, t6, t7, t8, t9 -> Collection9(t1, t2, t3, t4, t5, t6, t7, t8, t9) })
 }
 
-fun <T1, T2> Flowable<T1>.withLatestFrom(other: Publisher<out T2>): Flowable<BiCollection<T1, T2>>
-        = withLatestFrom(other, BiFunction { t1, t2 -> BiCollection(t1, t2) })
+fun <T1, T2> Flowable<T1>.withLatestFrom(other: Publisher<out T2>): Flowable<Pair<T1, T2>>
+        = withLatestFrom(other, BiFunction { t1, t2 -> t1 to t2 })
 
 fun <T1, T2, T3> Flowable<T1>.withLatestFrom(o1: Publisher<T2>,
-                                             o2: Publisher<T3>): Flowable<Collection3<T1, T2, T3>>
-        = withLatestFrom(o1, o2, Function3 { t1, t2, t3 -> Collection3(t1, t2, t3) })
+                                             o2: Publisher<T3>): Flowable<Triple<T1, T2, T3>>
+        = withLatestFrom(o1, o2, Function3 { t1, t2, t3 -> Triple(t1, t2, t3) })
 
 fun <T1, T2, T3, T4> Flowable<T1>.withLatestFrom(o1: Publisher<T2>,
                                                  o2: Publisher<T3>,
@@ -172,5 +172,5 @@ fun <T1, T2, T3, T4, T5> Flowable<T1>.withLatestFrom(o1: Publisher<T2>,
                                                      o4: Publisher<T5>): Flowable<Collection5<T1, T2, T3, T4, T5>>
         = withLatestFrom(o1, o2, o3, o4, Function5 { t1, t2, t3, t4, t5 -> Collection5(t1, t2, t3, t4, t5) })
 
-fun <T1, T2> Flowable<T1>.zipWith(other: Publisher<out T2>): Flowable<BiCollection<T1, T2>>
-        = zipWith(other, BiFunction { t1, t2 -> BiCollection(t1, t2) })
+fun <T1, T2> Flowable<T1>.zipWith(other: Publisher<out T2>): Flowable<Pair<T1, T2>>
+        = zipWith(other, BiFunction { t1, t2 -> t1 to t2 })

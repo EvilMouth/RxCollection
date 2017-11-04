@@ -16,15 +16,15 @@ import io.reactivex.functions.*
 object SingleCollection {
 
     fun <T1, T2> zip(source1: SingleSource<out T1>,
-                     source2: SingleSource<out T2>): Single<BiCollection<T1, T2>> =
+                     source2: SingleSource<out T2>): Single<Pair<T1, T2>> =
             Single.zip(source1, source2,
-                    BiFunction { t1, t2 -> BiCollection(t1, t2) })
+                    BiFunction { t1, t2 -> t1 to t2 })
 
     fun <T1, T2, T3> zip(source1: SingleSource<out T1>,
                          source2: SingleSource<out T2>,
-                         source3: SingleSource<out T3>): Single<Collection3<T1, T2, T3>> =
+                         source3: SingleSource<out T3>): Single<Triple<T1, T2, T3>> =
             Single.zip(source1, source2, source3,
-                    Function3 { t1, t2, t3 -> Collection3(t1, t2, t3) })
+                    Function3 { t1, t2, t3 -> Triple(t1, t2, t3) })
 
     fun <T1, T2, T3, T4> zip(source1: SingleSource<out T1>,
                              source2: SingleSource<out T2>,
@@ -84,5 +84,5 @@ object SingleCollection {
                     Function9 { t1, t2, t3, t4, t5, t6, t7, t8, t9 -> Collection9(t1, t2, t3, t4, t5, t6, t7, t8, t9) })
 }
 
-fun <T1, T2> Single<T1>.zipWith(other: SingleSource<T2>): Single<BiCollection<T1, T2>>
-        = zipWith(other, BiFunction { t1, t2 -> BiCollection(t1, t2) })
+fun <T1, T2> Single<T1>.zipWith(other: SingleSource<T2>): Single<Pair<T1, T2>>
+        = zipWith(other, BiFunction { t1, t2 -> t1 to t2 })

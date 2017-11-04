@@ -22,17 +22,17 @@ class ExampleUnitTest {
                 Observable.just(4F)
         )
                 .subscribeUnpack { s, i, l, fl ->
-                    System.out.println(s)
-                    System.out.println(i)
-                    System.out.println(l)
-                    System.out.println(fl)
+                    println(s)
+                    println(i)
+                    println(l)
+                    println(fl)
                 }
 
         Observable.just("1")
                 .zipWith(Observable.just(2F))
                 .subscribeUnpack { s, fl ->
-                    System.out.println(s)
-                    System.out.println(fl)
+                    println(s)
+                    println(fl)
                 }
     }
 }

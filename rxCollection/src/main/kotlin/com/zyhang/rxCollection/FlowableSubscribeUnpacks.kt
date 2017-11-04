@@ -12,14 +12,14 @@ import io.reactivex.disposables.Disposable
  * Modify remark:
  */
 
-fun <T1 : Any, T2 : Any> Flowable<BiCollection<T1, T2>>.subscribeUnpack(onError: (Throwable) -> Unit = onErrorStub,
-                                                                        onComplete: () -> Unit = onCompleteStub,
-                                                                        onNext: (T1, T2) -> Unit)
+fun <T1 : Any, T2 : Any> Flowable<Pair<T1, T2>>.subscribeUnpack(onError: (Throwable) -> Unit = onErrorStub,
+                                                                onComplete: () -> Unit = onCompleteStub,
+                                                                onNext: (T1, T2) -> Unit)
         : Disposable = subscribe({ it.unpack(onNext) }, onError, onComplete)
 
-fun <T1 : Any, T2 : Any, T3 : Any> Flowable<Collection3<T1, T2, T3>>.subscribeUnpack(onError: (Throwable) -> Unit = onErrorStub,
-                                                                                     onComplete: () -> Unit = onCompleteStub,
-                                                                                     onNext: (T1, T2, T3) -> Unit)
+fun <T1 : Any, T2 : Any, T3 : Any> Flowable<Triple<T1, T2, T3>>.subscribeUnpack(onError: (Throwable) -> Unit = onErrorStub,
+                                                                                onComplete: () -> Unit = onCompleteStub,
+                                                                                onNext: (T1, T2, T3) -> Unit)
         : Disposable = subscribe({ it.unpack(onNext) }, onError, onComplete)
 
 fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any> Flowable<Collection4<T1, T2, T3, T4>>.subscribeUnpack(onError: (Throwable) -> Unit = onErrorStub,

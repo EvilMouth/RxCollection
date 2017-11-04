@@ -16,15 +16,15 @@ import io.reactivex.functions.*
 object MaybeCollection {
 
     fun <T1, T2> zip(source1: MaybeSource<out T1>,
-                     source2: MaybeSource<out T2>): Maybe<BiCollection<T1, T2>> =
+                     source2: MaybeSource<out T2>): Maybe<Pair<T1, T2>> =
             Maybe.zip(source1, source2,
-                    BiFunction { t1, t2 -> BiCollection(t1, t2) })
+                    BiFunction { t1, t2 -> t1 to t2 })
 
     fun <T1, T2, T3> zip(source1: MaybeSource<out T1>,
                          source2: MaybeSource<out T2>,
-                         source3: MaybeSource<out T3>): Maybe<Collection3<T1, T2, T3>> =
+                         source3: MaybeSource<out T3>): Maybe<Triple<T1, T2, T3>> =
             Maybe.zip(source1, source2, source3,
-                    Function3 { t1, t2, t3 -> Collection3(t1, t2, t3) })
+                    Function3 { t1, t2, t3 -> Triple(t1, t2, t3) })
 
     fun <T1, T2, T3, T4> zip(source1: MaybeSource<out T1>,
                              source2: MaybeSource<out T2>,
@@ -84,5 +84,5 @@ object MaybeCollection {
                     Function9 { t1, t2, t3, t4, t5, t6, t7, t8, t9 -> Collection9(t1, t2, t3, t4, t5, t6, t7, t8, t9) })
 }
 
-fun <T1, T2> Maybe<T1>.zipWith(other: MaybeSource<out T2>): Maybe<BiCollection<T1, T2>>
-        = zipWith(other, BiFunction { t1, t2 -> BiCollection(t1, t2) })
+fun <T1, T2> Maybe<T1>.zipWith(other: MaybeSource<out T2>): Maybe<Pair<T1, T2>>
+        = zipWith(other, BiFunction { t1, t2 -> t1 to t2 })

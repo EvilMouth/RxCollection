@@ -12,14 +12,14 @@ import io.reactivex.disposables.Disposable
  * Modify remark:
  */
 
-fun <T1 : Any, T2 : Any> Maybe<BiCollection<T1, T2>>.subscribeUnpack(onError: (Throwable) -> Unit = onErrorStub,
-                                                                     onComplete: () -> Unit = onCompleteStub,
-                                                                     onNext: (T1, T2) -> Unit)
+fun <T1 : Any, T2 : Any> Maybe<Pair<T1, T2>>.subscribeUnpack(onError: (Throwable) -> Unit = onErrorStub,
+                                                             onComplete: () -> Unit = onCompleteStub,
+                                                             onNext: (T1, T2) -> Unit)
         : Disposable = subscribe({ it.unpack(onNext) }, onError, onComplete)
 
-fun <T1 : Any, T2 : Any, T3 : Any> Maybe<Collection3<T1, T2, T3>>.subscribeUnpack(onError: (Throwable) -> Unit = onErrorStub,
-                                                                                  onComplete: () -> Unit = onCompleteStub,
-                                                                                  onNext: (T1, T2, T3) -> Unit)
+fun <T1 : Any, T2 : Any, T3 : Any> Maybe<Triple<T1, T2, T3>>.subscribeUnpack(onError: (Throwable) -> Unit = onErrorStub,
+                                                                             onComplete: () -> Unit = onCompleteStub,
+                                                                             onNext: (T1, T2, T3) -> Unit)
         : Disposable = subscribe({ it.unpack(onNext) }, onError, onComplete)
 
 fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any> Maybe<Collection4<T1, T2, T3, T4>>.subscribeUnpack(onError: (Throwable) -> Unit = onErrorStub,

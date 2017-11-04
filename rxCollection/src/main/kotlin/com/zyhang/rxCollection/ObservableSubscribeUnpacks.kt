@@ -12,16 +12,16 @@ import io.reactivex.disposables.Disposable
  * Modify remark:
  */
 
-fun <T1 : Any, T2 : Any> Observable<BiCollection<T1, T2>>.subscribeUnpack(onError: (Throwable) -> Unit = onErrorStub,
-                                                                          onComplete: () -> Unit = onCompleteStub,
-                                                                          onSubscribe: (Disposable) -> Unit = onSubscribeStub,
-                                                                          onNext: (T1, T2) -> Unit)
+fun <T1 : Any, T2 : Any> Observable<Pair<T1, T2>>.subscribeUnpack(onError: (Throwable) -> Unit = onErrorStub,
+                                                                  onComplete: () -> Unit = onCompleteStub,
+                                                                  onSubscribe: (Disposable) -> Unit = onSubscribeStub,
+                                                                  onNext: (T1, T2) -> Unit)
         : Disposable = subscribe({ it.unpack(onNext) }, onError, onComplete, onSubscribe)
 
-fun <T1 : Any, T2 : Any, T3 : Any> Observable<Collection3<T1, T2, T3>>.subscribeUnpack(onError: (Throwable) -> Unit = onErrorStub,
-                                                                                       onComplete: () -> Unit = onCompleteStub,
-                                                                                       onSubscribe: (Disposable) -> Unit = onSubscribeStub,
-                                                                                       onNext: (T1, T2, T3) -> Unit)
+fun <T1 : Any, T2 : Any, T3 : Any> Observable<Triple<T1, T2, T3>>.subscribeUnpack(onError: (Throwable) -> Unit = onErrorStub,
+                                                                                  onComplete: () -> Unit = onCompleteStub,
+                                                                                  onSubscribe: (Disposable) -> Unit = onSubscribeStub,
+                                                                                  onNext: (T1, T2, T3) -> Unit)
         : Disposable = subscribe({ it.unpack(onNext) }, onError, onComplete, onSubscribe)
 
 fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any> Observable<Collection4<T1, T2, T3, T4>>.subscribeUnpack(onError: (Throwable) -> Unit = onErrorStub,

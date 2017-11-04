@@ -16,15 +16,15 @@ import io.reactivex.functions.*
 object ObservableCollection {
 
     fun <T1, T2> combineLatest(source1: ObservableSource<out T1>,
-                               source2: ObservableSource<out T2>): Observable<BiCollection<T1, T2>> =
+                               source2: ObservableSource<out T2>): Observable<Pair<T1, T2>> =
             Observable.combineLatest(source1, source2,
-                    BiFunction { t1, t2 -> BiCollection(t1, t2) })
+                    BiFunction { t1, t2 -> t1 to t2 })
 
     fun <T1, T2, T3> combineLatest(source1: ObservableSource<out T1>,
                                    source2: ObservableSource<out T2>,
-                                   source3: ObservableSource<out T3>): Observable<Collection3<T1, T2, T3>> =
+                                   source3: ObservableSource<out T3>): Observable<Triple<T1, T2, T3>> =
             Observable.combineLatest(source1, source2, source3,
-                    Function3 { t1, t2, t3 -> Collection3(t1, t2, t3) })
+                    Function3 { t1, t2, t3 -> Triple(t1, t2, t3) })
 
     fun <T1, T2, T3, T4> combineLatest(source1: ObservableSource<out T1>,
                                        source2: ObservableSource<out T2>,
@@ -86,15 +86,15 @@ object ObservableCollection {
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
     fun <T1, T2> zip(source1: ObservableSource<out T1>,
-                     source2: ObservableSource<out T2>): Observable<BiCollection<T1, T2>> =
+                     source2: ObservableSource<out T2>): Observable<Pair<T1, T2>> =
             Observable.zip(source1, source2,
-                    BiFunction { t1, t2 -> BiCollection(t1, t2) })
+                    BiFunction { t1, t2 -> t1 to t2 })
 
     fun <T1, T2, T3> zip(source1: ObservableSource<out T1>,
                          source2: ObservableSource<out T2>,
-                         source3: ObservableSource<out T3>): Observable<Collection3<T1, T2, T3>> =
+                         source3: ObservableSource<out T3>): Observable<Triple<T1, T2, T3>> =
             Observable.zip(source1, source2, source3,
-                    Function3 { t1, t2, t3 -> Collection3(t1, t2, t3) })
+                    Function3 { t1, t2, t3 -> Triple(t1, t2, t3) })
 
     fun <T1, T2, T3, T4> zip(source1: ObservableSource<out T1>,
                              source2: ObservableSource<out T2>,
@@ -154,12 +154,12 @@ object ObservableCollection {
                     Function9 { t1, t2, t3, t4, t5, t6, t7, t8, t9 -> Collection9(t1, t2, t3, t4, t5, t6, t7, t8, t9) })
 }
 
-fun <T1, T2> Observable<T1>.withLatestFrom(other: ObservableSource<out T2>): Observable<BiCollection<T1, T2>>
-        = withLatestFrom(other, BiFunction { t1, t2 -> BiCollection(t1, t2) })
+fun <T1, T2> Observable<T1>.withLatestFrom(other: ObservableSource<out T2>): Observable<Pair<T1, T2>>
+        = withLatestFrom(other, BiFunction { t1, t2 -> t1 to t2 })
 
 fun <T1, T2, T3> Observable<T1>.withLatestFrom(o1: ObservableSource<T2>,
-                                               o2: ObservableSource<T3>): Observable<Collection3<T1, T2, T3>>
-        = withLatestFrom(o1, o2, Function3 { t1, t2, t3 -> Collection3(t1, t2, t3) })
+                                               o2: ObservableSource<T3>): Observable<Triple<T1, T2, T3>>
+        = withLatestFrom(o1, o2, Function3 { t1, t2, t3 -> Triple(t1, t2, t3) })
 
 fun <T1, T2, T3, T4> Observable<T1>.withLatestFrom(o1: ObservableSource<T2>,
                                                    o2: ObservableSource<T3>,
@@ -172,5 +172,5 @@ fun <T1, T2, T3, T4, T5> Observable<T1>.withLatestFrom(o1: ObservableSource<T2>,
                                                        o4: ObservableSource<T5>): Observable<Collection5<T1, T2, T3, T4, T5>>
         = withLatestFrom(o1, o2, o3, o4, Function5 { t1, t2, t3, t4, t5 -> Collection5(t1, t2, t3, t4, t5) })
 
-fun <T1, T2> Observable<T1>.zipWith(other: ObservableSource<out T2>): Observable<BiCollection<T1, T2>>
-        = zipWith(other, BiFunction { t1, t2 -> BiCollection(t1, t2) })
+fun <T1, T2> Observable<T1>.zipWith(other: ObservableSource<out T2>): Observable<Pair<T1, T2>>
+        = zipWith(other, BiFunction { t1, t2 -> t1 to t2 })
