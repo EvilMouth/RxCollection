@@ -8,4 +8,4 @@ implementation 'com.zyhang:rxCollection:{{last_version}}'
 ```
 
 ### Example
-[Link](https://github.com/izyhang/RxCollection/tree/master/blob/example/src/main/java/com/zyhang/rxCollection/MainActivity.kt)
+[Link](https://github.com/izyhang/RxCollection/blob/master/example/src/main/java/com/zyhang/rxCollection/example/MainActivity.kt)
