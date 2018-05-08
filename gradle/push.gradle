@@ -1,0 +1,40 @@
+apply plugin: 'com.novoda.bintray-release'
+
+// bintray
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+def user = properties.getProperty("bintray.user")
+def key = properties.getProperty("bintray.apikey")
+
+publish {
+    repoName = 'maven'
+    userOrg = 'zyhang'
+    groupId = 'com.zyhang'
+    artifactId = 'rxCollection'
+    publishVersion = library_version
+    licences = ['Apache-2.0']
+    desc = 'auto pack source in zip.() and unpack them to subscribe'
+    website = 'https://github.com/izyhang/RxCollection'
+    issueTracker = 'https://github.com/izyhang/RxCollection/issues'
+    repository = 'https://github.com/izyhang/RxCollection.git'
+
+    bintrayUser = user
+    bintrayKey = key
+}
+
+task fuck(group: 'publishing') {
+    doFirst {
+        if (null == user || null == key) {
+            throw new MissingPropertyException('missing bintray.users or bintray.apikey in local.properties')
+        }
+    }
+    doLast {
+        sh()
+    }
+}
+
+def sh() {
+    exec {
+        commandLine 'sh', '../gradle/push.sh'
+    }
+}

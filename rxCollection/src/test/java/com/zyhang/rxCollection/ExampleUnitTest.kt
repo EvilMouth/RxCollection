@@ -21,6 +21,14 @@ class ExampleUnitTest {
                 Observable.just(3L),
                 Observable.just(4F)
         )
+                .doOnNext {
+                    it.unpack { s, i, l, fl ->
+                        println(s)
+                        println(i)
+                        println(l)
+                        println(fl)
+                    }
+                }
                 .subscribeUnpack { s, i, l, fl ->
                     println(s)
                     println(i)
