@@ -1,5 +1,7 @@
 apply plugin: 'com.novoda.bintray-release'
 
+import org.apache.tools.ant.taskdefs.condition.Os
+
 // bintray
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
@@ -7,16 +9,17 @@ def user = properties.getProperty("bintray.user")
 def key = properties.getProperty("bintray.apikey")
 
 publish {
-    repoName = 'maven'
-    userOrg = 'zyhang'
-    groupId = 'com.zyhang'
-    artifactId = 'rxCollection'
-    publishVersion = library_version
-    licences = ['Apache-2.0']
-    desc = 'auto pack source in zip.() and unpack them to subscribe'
-    website = 'https://github.com/izyhang/RxCollection'
-    issueTracker = 'https://github.com/izyhang/RxCollection/issues'
-    repository = 'https://github.com/izyhang/RxCollection.git'
+    repoName = POM_REPO_NAME
+    userOrg = POM_USER_ORG
+    groupId = POM_GROUP_ID
+    artifactId = POM_ARTIFACT_ID
+    publishVersion = POM_PUBLISH_VERSION
+    uploadName = POM_UPLOAD_NAME
+    licences = POM_LICENCES.split(',')
+    desc = POM_DESC
+    website = POM_WEBSITE
+    issueTracker = POM_ISSUE_TRACKER
+    repository = POM_REPOSITORY
 
     bintrayUser = user
     bintrayKey = key
@@ -29,12 +32,16 @@ task fuck(group: 'publishing') {
         }
     }
     doLast {
-        sh()
+        exec {
+            commandLine "../${getGradlewName()}", 'clean', 'build', 'bintrayUpload', '-PdryRun=false'
+        }
     }
 }
 
-def sh() {
-    exec {
-        commandLine 'sh', '../gradle/push.sh'
+static def getGradlewName() {
+    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+        return "gradlew.bat"
+    } else {
+        return "gradlew"
     }
 }
