@@ -1,15 +1,16 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+
 android {
-    compileSdkVersion 27
+    compileSdkVersion Configs.compileSdkVersion
 
 
 
     defaultConfig {
         applicationId "com.zyhang.rxCollection.example"
-        minSdkVersion 16
-        targetSdkVersion 27
+        minSdkVersion Configs.minSdkVersion
+        targetSdkVersion Configs.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -29,16 +30,20 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    testImplementation Libs.junit
+    androidTestImplementation Libs.runner
+    androidTestImplementation Libs.espresso_core
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$KOTLIN_VERSION"
-    implementation "io.reactivex.rxjava2:rxjava:2.1.13"
+    implementation Libs.support_appcompat_v7
 
-    implementation 'com.zyhang:rxcollection:1.0.0', {
+    implementation Libs.kotlin_stdlib
+    implementation Libs.rxjava
+
+    implementation Libs.constraint_layout
+
+//    implementation project(':rxCollection')
+
+    implementation 'com.zyhang:rxcollection:1.1.1', {
         exclude module: 'rxjava'
         exclude module: 'kotlin-stdlib-jdk8'
         exclude module: 'appcompat-v7'
