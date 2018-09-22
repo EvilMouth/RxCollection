@@ -10,7 +10,6 @@ android {
     defaultConfig {
         applicationId "com.zyhang.rxCollection.example"
         minSdkVersion Configs.minSdkVersion
-        targetSdkVersion Configs.targetSdkVersion
         versionCode 1
         versionName "1.0"
 

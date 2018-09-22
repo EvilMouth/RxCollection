@@ -9,7 +9,6 @@ android {
 
     defaultConfig {
         minSdkVersion Configs.minSdkVersion
-        targetSdkVersion Configs.targetSdkVersion
         versionCode 1
         versionName POM_PUBLISH_VERSION
 
@@ -40,6 +39,8 @@ dependencies {
 
     implementation Libs.kotlin_stdlib
     implementation Libs.rxjava
+
+    api 'com.zyhang:myproguard:1.0.0'
 }
 
-apply from: '../gradle/push.gradle'
+apply from: 'https://raw.githubusercontent.com/izyhang/novoda-push/master/gradle/push.gradle'
