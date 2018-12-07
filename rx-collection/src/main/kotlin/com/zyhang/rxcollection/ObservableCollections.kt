@@ -174,3 +174,5 @@ fun <T1, T2, T3, T4, T5> Observable<T1>.withLatestFrom(o1: ObservableSource<T2>,
 
 fun <T1, T2> Observable<T1>.zipWith(other: ObservableSource<out T2>): Observable<Pair<T1, T2>>
         = zipWith(other, BiFunction { t1, t2 -> t1 to t2 })
+
+infix fun <A, B> ObservableSource<A>.zip(that: ObservableSource<B>): Observable<Pair<A, B>> = ObservableCollection.zip(this, that)

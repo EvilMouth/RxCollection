@@ -174,3 +174,5 @@ fun <T1, T2, T3, T4, T5> Flowable<T1>.withLatestFrom(o1: Publisher<T2>,
 
 fun <T1, T2> Flowable<T1>.zipWith(other: Publisher<out T2>): Flowable<Pair<T1, T2>>
         = zipWith(other, BiFunction { t1, t2 -> t1 to t2 })
+
+infix fun <A, B> Publisher<A>.zip(that: Publisher<B>): Flowable<Pair<A, B>> = FlowableCollection.zip(this, that)

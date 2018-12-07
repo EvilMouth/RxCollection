@@ -29,37 +29,38 @@ Observable.zip(
 现在可以直接删掉zipper和bean
 
 ```kotlin
-ObservableCollection.zip(
-                Observable.just("1"),
-                Observable.just(2),
-                Observable.just(3L),
-                Observable.just(4F)
-        )
-                .doOnNext {
-                    it.unpack { s, i, l, fl ->
-                        println(s)
-                        println(i)
-                        println(l)
-                        println(fl)
-                    }
-                }
-                .subscribeUnpack { s, i, l, fl ->
-                    println(s)
-                    println(i)
-                    println(l)
-                    println(fl)
-                }
+val o1 = Observable.just(1)
+val o2 = Observable.just("2")
+val o3 = Observable.just(3L)
+val o4 = Observable.just(4F)
+
+ObservableCollection.zip(o1, o2, o3, o4)
+        .doOnNext {
+            it.unpack { i, s, l, fl ->
+                println(i)
+                println(s)
+                println(l)
+                println(fl)
+            }
+        }.subscribeUnpack()
 ```
 
-or 
+or
 
 ```kotlin
-Observable.just("1")
-                .zipWith(Observable.just(2F))
-                .subscribeUnpack { s, fl ->
-                    println(s)
-                    println(fl)
-                }
+o1.zipWith(o2).subscribeUnpack { s, fl ->
+    println(s)
+    println(fl)
+}
+```
+
+更有黑魔法
+
+```kotlin
+(o3 zip o4).subscribeUnpack { l, fl ->
+    println(l)
+    println(fl)
+}
 ```
 
 ### Installation

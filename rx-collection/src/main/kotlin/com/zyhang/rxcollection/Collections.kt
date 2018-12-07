@@ -11,36 +11,6 @@ import java.io.Serializable
  * Modify remark:
  */
 
-//data class Collection<out T1>(
-//        val t1: T1) : Serializable {
-//    fun unpack(onNext: (T1) -> Unit) {
-//        onNext(t1)
-//    }
-//
-//    override fun toString() = "($t1)"
-//}
-//
-//data class BiCollection<out T1, out T2>(
-//        val t1: T1,
-//        val t2: T2) : Serializable {
-//    fun unpack(onNext: (T1, T2) -> Unit) {
-//        onNext(t1, t2)
-//    }
-//
-//    override fun toString() = "($t1, $t2)"
-//}
-//
-//data class Collection3<out T1, out T2, out T3>(
-//        val t1: T1,
-//        val t2: T2,
-//        val t3: T3) : Serializable {
-//    fun unpack(onNext: (T1, T2, T3) -> Unit) {
-//        onNext(t1, t2, t3)
-//    }
-//
-//    override fun toString() = "($t1, $t2, $t3)"
-//}
-
 /**
  * support Pair.unpack { first, second ->
  *
@@ -148,9 +118,6 @@ data class Collection9<out T1, out T2, out T3, out T4, out T5, out T6, out T7, o
     override fun toString() = "($t1, $t2, $t3, $t4, $t5, $t6, $t7, $t8, $t9)"
 }
 
-//fun <T> Collection<T>.toList(): List<T> = listOf(t1)
-//fun <T> BiCollection<T, T>.toList(): List<T> = listOf(t1, t2)
-//fun <T> Collection3<T, T, T>.toList(): List<T> = listOf(t1, t2, t3)
 fun <T> Collection4<T, T, T, T>.toList(): List<T> = listOf(t1, t2, t3, t4)
 fun <T> Collection5<T, T, T, T, T>.toList(): List<T> = listOf(t1, t2, t3, t4, t5)
 fun <T> Collection6<T, T, T, T, T, T>.toList(): List<T> = listOf(t1, t2, t3, t4, t5, t6)

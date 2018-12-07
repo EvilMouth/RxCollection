@@ -86,3 +86,5 @@ object SingleCollection {
 
 fun <T1, T2> Single<T1>.zipWith(other: SingleSource<T2>): Single<Pair<T1, T2>>
         = zipWith(other, BiFunction { t1, t2 -> t1 to t2 })
+
+infix fun <A, B> SingleSource<A>.zip(that: SingleSource<B>): Single<Pair<A, B>> = SingleCollection.zip(this, that)

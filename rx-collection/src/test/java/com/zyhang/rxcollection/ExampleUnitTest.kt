@@ -15,29 +15,33 @@ class ExampleUnitTest {
     fun addition_isCorrect() {
         assertEquals(4, (2 + 2).toLong())
 
-        ObservableCollection.zip(
-                Observable.just("1"),
-                Observable.just(2),
-                Observable.just(3L),
-                Observable.just(4F)
-        )
+        val o1 = Observable.just(1)
+        val o2 = Observable.just("2")
+        val o3 = Observable.just(3L)
+        val o4 = Observable.just(4F)
+
+        ObservableCollection.zip(o1, o2, o3, o4)
                 .doOnNext {
-                    it.unpack { s, i, l, fl ->
-                        println(s)
+                    it.unpack { i, s, l, fl ->
                         println(i)
+                        println(s)
                         println(l)
                         println(fl)
                     }
-                }
-                .subscribeUnpack()
+                }.subscribeUnpack()
 
         println()
 
-        Observable.just("1")
-                .zipWith(Observable.just(2F))
-                .subscribeUnpack { s, fl ->
-                    println(s)
-                    println(fl)
-                }
+        o1.zipWith(o2).subscribeUnpack { s, fl ->
+            println(s)
+            println(fl)
+        }
+
+        println()
+
+        (o3 zip o4).subscribeUnpack { l, fl ->
+            println(l)
+            println(fl)
+        }
     }
 }

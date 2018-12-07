@@ -86,3 +86,5 @@ object MaybeCollection {
 
 fun <T1, T2> Maybe<T1>.zipWith(other: MaybeSource<out T2>): Maybe<Pair<T1, T2>>
         = zipWith(other, BiFunction { t1, t2 -> t1 to t2 })
+
+infix fun <A, B> MaybeSource<A>.zip(that: MaybeSource<B>): Maybe<Pair<A, B>> = MaybeCollection.zip(this, that)
