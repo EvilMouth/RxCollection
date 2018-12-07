@@ -29,12 +29,7 @@ class ExampleUnitTest {
                         println(fl)
                     }
                 }
-                .subscribeUnpack { s, i, l, fl ->
-                    println(s)
-                    println(i)
-                    println(l)
-                    println(fl)
-                }
+                .subscribeUnpack()
 
         println()
 

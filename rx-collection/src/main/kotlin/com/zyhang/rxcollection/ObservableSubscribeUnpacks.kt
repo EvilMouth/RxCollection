@@ -14,57 +14,113 @@ import io.reactivex.disposables.Disposable
  */
 
 @CheckReturnValue
-fun <T1 : Any, T2 : Any> Observable<Pair<T1, T2>>.subscribeUnpack(onError: (Throwable) -> Unit = onErrorStub,
-                                                                  onComplete: () -> Unit = onCompleteStub,
-                                                                  onSubscribe: (Disposable) -> Unit = onSubscribeStub,
-                                                                  onNext: (T1, T2) -> Unit)
-        : Disposable = subscribe({ it.unpack(onNext) }, onError, onComplete, onSubscribe)
+fun <T1 : Any, T2 : Any> Observable<Pair<T1, T2>>.subscribeUnpack(
+        onError: (Throwable) -> Unit = onErrorStub,
+        onComplete: () -> Unit = onCompleteStub,
+        onNext: (T1, T2) -> Unit = onNextStubPair
+): Disposable = subscribe(onNext.asConsumer(), onError.asOnErrorConsumer(), onComplete.asOnCompleteAction())
 
 @CheckReturnValue
-fun <T1 : Any, T2 : Any, T3 : Any> Observable<Triple<T1, T2, T3>>.subscribeUnpack(onError: (Throwable) -> Unit = onErrorStub,
-                                                                                  onComplete: () -> Unit = onCompleteStub,
-                                                                                  onSubscribe: (Disposable) -> Unit = onSubscribeStub,
-                                                                                  onNext: (T1, T2, T3) -> Unit)
-        : Disposable = subscribe({ it.unpack(onNext) }, onError, onComplete, onSubscribe)
+fun <T1 : Any, T2 : Any, T3 : Any> Observable<Triple<T1, T2, T3>>.subscribeUnpack(
+        onError: (Throwable) -> Unit = onErrorStub,
+        onComplete: () -> Unit = onCompleteStub,
+        onNext: (T1, T2, T3) -> Unit = onNextStubTriple
+): Disposable = subscribe(onNext.asConsumer(), onError.asOnErrorConsumer(), onComplete.asOnCompleteAction())
 
 @CheckReturnValue
-fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any> Observable<Collection4<T1, T2, T3, T4>>.subscribeUnpack(onError: (Throwable) -> Unit = onErrorStub,
-                                                                                                     onComplete: () -> Unit = onCompleteStub,
-                                                                                                     onSubscribe: (Disposable) -> Unit = onSubscribeStub,
-                                                                                                     onNext: (T1, T2, T3, T4) -> Unit)
-        : Disposable = subscribe({ it.unpack(onNext) }, onError, onComplete, onSubscribe)
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any> Observable<Collection4<T1, T2, T3, T4>>.subscribeUnpack(
+        onError: (Throwable) -> Unit = onErrorStub,
+        onComplete: () -> Unit = onCompleteStub,
+        onNext: (T1, T2, T3, T4) -> Unit = onNextStubCol4
+): Disposable = subscribe(onNext.asConsumer(), onError.asOnErrorConsumer(), onComplete.asOnCompleteAction())
 
 @CheckReturnValue
-fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any> Observable<Collection5<T1, T2, T3, T4, T5>>.subscribeUnpack(onError: (Throwable) -> Unit = onErrorStub,
-                                                                                                                   onComplete: () -> Unit = onCompleteStub,
-                                                                                                                   onSubscribe: (Disposable) -> Unit = onSubscribeStub,
-                                                                                                                   onNext: (T1, T2, T3, T4, T5) -> Unit)
-        : Disposable = subscribe({ it.unpack(onNext) }, onError, onComplete, onSubscribe)
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any> Observable<Collection5<T1, T2, T3, T4, T5>>.subscribeUnpack(
+        onError: (Throwable) -> Unit = onErrorStub,
+        onComplete: () -> Unit = onCompleteStub,
+        onNext: (T1, T2, T3, T4, T5) -> Unit = onNextStubCol5
+): Disposable = subscribe(onNext.asConsumer(), onError.asOnErrorConsumer(), onComplete.asOnCompleteAction())
 
 @CheckReturnValue
-fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any> Observable<Collection6<T1, T2, T3, T4, T5, T6>>.subscribeUnpack(onError: (Throwable) -> Unit = onErrorStub,
-                                                                                                                                 onComplete: () -> Unit = onCompleteStub,
-                                                                                                                                 onSubscribe: (Disposable) -> Unit = onSubscribeStub,
-                                                                                                                                 onNext: (T1, T2, T3, T4, T5, T6) -> Unit)
-        : Disposable = subscribe({ it.unpack(onNext) }, onError, onComplete, onSubscribe)
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any> Observable<Collection6<T1, T2, T3, T4, T5, T6>>.subscribeUnpack(
+        onError: (Throwable) -> Unit = onErrorStub,
+        onComplete: () -> Unit = onCompleteStub,
+        onNext: (T1, T2, T3, T4, T5, T6) -> Unit = onNextStubCol6
+): Disposable = subscribe(onNext.asConsumer(), onError.asOnErrorConsumer(), onComplete.asOnCompleteAction())
 
 @CheckReturnValue
-fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any> Observable<Collection7<T1, T2, T3, T4, T5, T6, T7>>.subscribeUnpack(onError: (Throwable) -> Unit = onErrorStub,
-                                                                                                                                               onComplete: () -> Unit = onCompleteStub,
-                                                                                                                                               onSubscribe: (Disposable) -> Unit = onSubscribeStub,
-                                                                                                                                               onNext: (T1, T2, T3, T4, T5, T6, T7) -> Unit)
-        : Disposable = subscribe({ it.unpack(onNext) }, onError, onComplete, onSubscribe)
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any> Observable<Collection7<T1, T2, T3, T4, T5, T6, T7>>.subscribeUnpack(
+        onError: (Throwable) -> Unit = onErrorStub,
+        onComplete: () -> Unit = onCompleteStub,
+        onNext: (T1, T2, T3, T4, T5, T6, T7) -> Unit = onNextStubCol7
+): Disposable = subscribe(onNext.asConsumer(), onError.asOnErrorConsumer(), onComplete.asOnCompleteAction())
 
 @CheckReturnValue
-fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any> Observable<Collection8<T1, T2, T3, T4, T5, T6, T7, T8>>.subscribeUnpack(onError: (Throwable) -> Unit = onErrorStub,
-                                                                                                                                                             onComplete: () -> Unit = onCompleteStub,
-                                                                                                                                                             onSubscribe: (Disposable) -> Unit = onSubscribeStub,
-                                                                                                                                                             onNext: (T1, T2, T3, T4, T5, T6, T7, T8) -> Unit)
-        : Disposable = subscribe({ it.unpack(onNext) }, onError, onComplete, onSubscribe)
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any> Observable<Collection8<T1, T2, T3, T4, T5, T6, T7, T8>>.subscribeUnpack(
+        onError: (Throwable) -> Unit = onErrorStub,
+        onComplete: () -> Unit = onCompleteStub,
+        onNext: (T1, T2, T3, T4, T5, T6, T7, T8) -> Unit = onNextStubCol8
+): Disposable = subscribe(onNext.asConsumer(), onError.asOnErrorConsumer(), onComplete.asOnCompleteAction())
 
 @CheckReturnValue
-fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any> Observable<Collection9<T1, T2, T3, T4, T5, T6, T7, T8, T9>>.subscribeUnpack(onError: (Throwable) -> Unit = onErrorStub,
-                                                                                                                                                                           onComplete: () -> Unit = onCompleteStub,
-                                                                                                                                                                           onSubscribe: (Disposable) -> Unit = onSubscribeStub,
-                                                                                                                                                                           onNext: (T1, T2, T3, T4, T5, T6, T7, T8, T9) -> Unit)
-        : Disposable = subscribe({ it.unpack(onNext) }, onError, onComplete, onSubscribe)
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any> Observable<Collection9<T1, T2, T3, T4, T5, T6, T7, T8, T9>>.subscribeUnpack(
+        onError: (Throwable) -> Unit = onErrorStub,
+        onComplete: () -> Unit = onCompleteStub,
+        onNext: (T1, T2, T3, T4, T5, T6, T7, T8, T9) -> Unit = onNextStubCol9
+): Disposable = subscribe(onNext.asConsumer(), onError.asOnErrorConsumer(), onComplete.asOnCompleteAction())
+
+@CheckReturnValue
+fun <T1 : Any, T2 : Any> Observable<Pair<T1, T2>>.blockingSubscribeUnpack(
+        onError: (Throwable) -> Unit = onErrorStub,
+        onComplete: () -> Unit = onCompleteStub,
+        onNext: (T1, T2) -> Unit = onNextStubPair
+) = blockingSubscribe(onNext.asConsumer(), onError.asOnErrorConsumer(), onComplete.asOnCompleteAction())
+
+@CheckReturnValue
+fun <T1 : Any, T2 : Any, T3 : Any> Observable<Triple<T1, T2, T3>>.blockingSubscribeUnpack(
+        onError: (Throwable) -> Unit = onErrorStub,
+        onComplete: () -> Unit = onCompleteStub,
+        onNext: (T1, T2, T3) -> Unit = onNextStubTriple
+) = blockingSubscribe(onNext.asConsumer(), onError.asOnErrorConsumer(), onComplete.asOnCompleteAction())
+
+@CheckReturnValue
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any> Observable<Collection4<T1, T2, T3, T4>>.blockingSubscribeUnpack(
+        onError: (Throwable) -> Unit = onErrorStub,
+        onComplete: () -> Unit = onCompleteStub,
+        onNext: (T1, T2, T3, T4) -> Unit = onNextStubCol4
+) = blockingSubscribe(onNext.asConsumer(), onError.asOnErrorConsumer(), onComplete.asOnCompleteAction())
+
+@CheckReturnValue
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any> Observable<Collection5<T1, T2, T3, T4, T5>>.blockingSubscribeUnpack(
+        onError: (Throwable) -> Unit = onErrorStub,
+        onComplete: () -> Unit = onCompleteStub,
+        onNext: (T1, T2, T3, T4, T5) -> Unit = onNextStubCol5
+) = blockingSubscribe(onNext.asConsumer(), onError.asOnErrorConsumer(), onComplete.asOnCompleteAction())
+
+@CheckReturnValue
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any> Observable<Collection6<T1, T2, T3, T4, T5, T6>>.blockingSubscribeUnpack(
+        onError: (Throwable) -> Unit = onErrorStub,
+        onComplete: () -> Unit = onCompleteStub,
+        onNext: (T1, T2, T3, T4, T5, T6) -> Unit = onNextStubCol6
+) = blockingSubscribe(onNext.asConsumer(), onError.asOnErrorConsumer(), onComplete.asOnCompleteAction())
+
+@CheckReturnValue
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any> Observable<Collection7<T1, T2, T3, T4, T5, T6, T7>>.blockingSubscribeUnpack(
+        onError: (Throwable) -> Unit = onErrorStub,
+        onComplete: () -> Unit = onCompleteStub,
+        onNext: (T1, T2, T3, T4, T5, T6, T7) -> Unit = onNextStubCol7
+) = blockingSubscribe(onNext.asConsumer(), onError.asOnErrorConsumer(), onComplete.asOnCompleteAction())
+
+@CheckReturnValue
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any> Observable<Collection8<T1, T2, T3, T4, T5, T6, T7, T8>>.blockingSubscribeUnpack(
+        onError: (Throwable) -> Unit = onErrorStub,
+        onComplete: () -> Unit = onCompleteStub,
+        onNext: (T1, T2, T3, T4, T5, T6, T7, T8) -> Unit = onNextStubCol8
+) = blockingSubscribe(onNext.asConsumer(), onError.asOnErrorConsumer(), onComplete.asOnCompleteAction())
+
+@CheckReturnValue
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any> Observable<Collection9<T1, T2, T3, T4, T5, T6, T7, T8, T9>>.blockingSubscribeUnpack(
+        onError: (Throwable) -> Unit = onErrorStub,
+        onComplete: () -> Unit = onCompleteStub,
+        onNext: (T1, T2, T3, T4, T5, T6, T7, T8, T9) -> Unit = onNextStubCol9
+) = blockingSubscribe(onNext.asConsumer(), onError.asOnErrorConsumer(), onComplete.asOnCompleteAction())
